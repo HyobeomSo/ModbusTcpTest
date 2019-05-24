@@ -91,7 +91,7 @@ namespace WpfApp1
                     bToS += recBuff[i].ToString("X") +recBuff[i + 1].ToString("X");
                     recList.Add(new Data { Address = addr++, Value = int.Parse(bToS, System.Globalization.NumberStyles.HexNumber) });
                 }
-                DataView.a
+                
                 msg += '\n';
                 Dispatcher.Invoke(DispatcherPriority.Normal, new Action(delegate {
                     PacketView.AppendText("[수신] " + msg);
