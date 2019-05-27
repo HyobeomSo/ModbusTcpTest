@@ -5,25 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Window2" Height="283.557" Width="279.195">
+        Title="Read/Write Definition" Height="283.557" Width="346.266">
     <Grid>
-        <TextBox Name="SlaveID" HorizontalAlignment="Left" Height="23" Margin="92,49,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="60"/>
-        <TextBox Name="Addr" HorizontalAlignment="Left" Height="23" Margin="92,105,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="60"/>
-        <TextBox Name="Quantity" HorizontalAlignment="Left" Height="23" Margin="92,133,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="60"/>
-        <ComboBox Name="Function" HorizontalAlignment="Left" VerticalAlignment="Top" Width="175" Margin="92,77,0,0" SelectedIndex="2" Background="{x:Null}">
+        <TextBox Name="SlaveID" HorizontalAlignment="Left" Height="23" Margin="127,39,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="60"/>
+        <TextBox Name="Addr" HorizontalAlignment="Left" Height="23" Margin="127,95,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="60"/>
+        <TextBox Name="Quantity" HorizontalAlignment="Left" Height="23" Margin="127,123,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="60"/>
+        <ComboBox Name="Function" HorizontalAlignment="Left" VerticalAlignment="Top" Width="175" Margin="127,67,0,0" SelectedIndex="2" Background="{x:Null}">
             <ComboBoxItem Content="01 Read Coils"/>
             <ComboBoxItem Content="02 Read Discrete Inputs"/>
             <ComboBoxItem Content="03 Read Holding Registers"/>
             <ComboBoxItem Content="04 Read Input Registers"/>
         </ComboBox>
-        <Label Content="Slave ID&#xD;&#xA;" HorizontalAlignment="Left" Margin="24,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="53" Height="23"/>
-        <Label Content="Function&#xA;" HorizontalAlignment="Left" Margin="21,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="67" Height="23"/>
-        <Label Content="Address&#xD;&#xA;&#xA;" HorizontalAlignment="Left" Margin="24,105,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="53" Height="23"/>
-        <Label Content="Quantity" HorizontalAlignment="Left" Margin="20,133,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="57" Height="34"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="92,161,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="60"/>
-        <Label Content="Scan Rate&#xA;" HorizontalAlignment="Left" Margin="13,161,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="67" Height="23"/>
-        <Label Content="ms&#xA;" HorizontalAlignment="Left" Margin="152,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="53" Height="23"/>
-        <Button Content="OK" HorizontalAlignment="Left" Margin="92,206,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}" Click="OK_Click"/>
+        <Label Content="Slave ID&#xD;&#xA;" HorizontalAlignment="Left" Margin="59,39,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="56" Height="23"/>
+        <Label Content="Function&#xA;" HorizontalAlignment="Left" Margin="56,67,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="67" Height="23"/>
+        <Label Content="Address&#xD;&#xA;&#xA;" HorizontalAlignment="Left" Margin="59,95,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="53" Height="23"/>
+        <Label Content="Quantity" HorizontalAlignment="Left" Margin="55,123,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="57" Height="34"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="127,151,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="60"/>
+        <Label Content="Scan Rate&#xA;" HorizontalAlignment="Left" Margin="48,151,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="67" Height="23"/>
+        <Label Content="ms&#xA;" HorizontalAlignment="Left" Margin="187,152,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="53" Height="23"/>
+        <Button Content="OK" HorizontalAlignment="Left" Margin="127,196,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}" Click="OK_Click"/>
 
     </Grid>
 </Window>

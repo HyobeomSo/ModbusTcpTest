@@ -1,0 +1,19 @@
+﻿<Window x:Class="WpfApp1.Window3"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Window3" Height="215.958" Width="217.022">
+    <Grid>
+        <TextBox Name="Id" HorizontalAlignment="Left" Height="23" Margin="91,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
+        <TextBox Name="Addr" HorizontalAlignment="Left" Height="23" Margin="91,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
+        <Label Content="Slave ID;" HorizontalAlignment="Left" Margin="23,23,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="53" Height="23"/>
+        <Label Content="Address" HorizontalAlignment="Left" Margin="22,51,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="57" Height="34"/>
+        <TextBox Name="Value" HorizontalAlignment="Left" Height="23" Margin="91,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
+        <Label Content="Value" HorizontalAlignment="Left" Margin="37,79,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="67" Height="23"/>
+        <Button Content="OK" HorizontalAlignment="Left" Margin="66,122,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}" Click="OK_Click"/>
+
+    </Grid>
+</Window>

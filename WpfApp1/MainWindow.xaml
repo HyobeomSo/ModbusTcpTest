@@ -12,7 +12,7 @@
             <Button BorderBrush="{x:Null}" Background="{x:Null}" Content="Read/Write Definition&#xD;&#xA;" Height="25" Click="Setting"/>
         </Menu>
         <TextBox Name="PacketView" TextWrapping="Wrap" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="630" Height="97" VerticalAlignment="Bottom"/>
-        <ListView Name="DataView" HorizontalAlignment="Left" Height="356" Margin="0,25,0,0" VerticalAlignment="Top" Width="630">
+        <ListView Name="DataView" HorizontalAlignment="Left" Height="356" Margin="0,25,0,0" VerticalAlignment="Top" Width="630" MouseDoubleClick="DataView_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Address" Width="200" DisplayMemberBinding="{Binding Address}"/>

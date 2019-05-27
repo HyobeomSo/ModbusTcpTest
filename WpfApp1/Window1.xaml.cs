@@ -30,14 +30,22 @@ namespace WpfApp1
         private void ConnectBtn_Click(object sender, RoutedEventArgs e)
         {
             {
-                mw.tcp = new TcpClient(ipAddr.Text, Convert.ToInt32(port.Text));
-                if (!mw.tcp.Connected)
+                try
                 {
-                    MessageBox.Show("Connection Failed");
+                    mw.tcp = new TcpClient(ipAddr.Text, Convert.ToInt32(port.Text));
+                    if (!mw.tcp.Connected)
+                    {
+                        MessageBox.Show("Connection Failed");
+                        Close();
+                    }
+                    else
+                    {
+                        Close();
+                    }
                 }
-                else
+                catch (SocketException ex)
                 {
-                    Close();
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
