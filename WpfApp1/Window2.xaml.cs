@@ -38,6 +38,7 @@ namespace WpfApp1
             mw.modLen = 2 * Convert.ToInt32(Quantity.Text) + 9;
             mw.addr = Convert.ToInt32(Addr.Text);
             mw.SendThread();
+            mw.sr = Convert.ToInt32(ScanRate.Text);
             this.Close();
         }
     }

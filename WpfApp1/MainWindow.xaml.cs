@@ -37,6 +37,7 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+            DataView.ItemsSource = recList;
         }
 
         private void Connection_Click(object sender, RoutedEventArgs e)
@@ -63,6 +64,7 @@ namespace WpfApp1
         public int addr;
         public string writePacket;
         string bakPacket;
+        public int sr;
         private void SendTCP()
         {
             while (true)
@@ -99,10 +101,11 @@ namespace WpfApp1
                     {
                         PacketView.AppendText("[수신] " + msg);
                         PacketView.ScrollToEnd();
+                        DataView.ItemsSource = recList;
                     }));
                     tID++;
                     packet = bakPacket;
-                    Thread.Sleep(1000);
+                    Thread.Sleep(sr);
                 }
                 else
                 {
@@ -131,7 +134,7 @@ namespace WpfApp1
                     }
                     string bToS;
                     int idx = 0;
-                    for (int i = 9; i + 2 < recBuff.Length; i += 2)
+                    for (int i = 9; i + 2 <= recBuff.Length; i += 2)
                     {
                         bToS = "";
                         bToS += recBuff[i].ToString("X") + recBuff[i + 1].ToString("X");
@@ -146,7 +149,7 @@ namespace WpfApp1
                         DataView.ItemsSource = recList;
                     }));
                     tID++;
-                    Thread.Sleep(1000);
+                    Thread.Sleep(sr);
                 }
             }
         }
