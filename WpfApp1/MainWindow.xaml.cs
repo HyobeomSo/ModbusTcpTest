@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -54,8 +55,15 @@ namespace WpfApp1
             con.ShowDialog();
         }
         Thread T1;
+        public int q;
         public void SendThread()
         {
+            recList = new List<Data>();
+            for (int i = 0; i < q; i++)
+            {
+                recList.Add(new Data { Address = addr + i, Value = 0 });
+            }
+            DataView.ItemsSource = recList;
             T1 = new Thread(new ThreadStart(SendTCP));
             T1.Start();
         }
@@ -69,88 +77,54 @@ namespace WpfApp1
         {
             while (true)
             {
-                if (isWrite == true)
+                if (isWrite)
                 {
-                    if (recList != null)
-                        recList.Clear();
-                    isWrite = false;
                     bakPacket = packet;
                     packet = writePacket;
-                    string temp = tID.ToString("X").PadLeft(4, '0') + "0000" + packet;
-                    byte[] sendBuff = new byte[temp.Length / 2];
-                    for (int i = 0; i < temp.Length; i += 2)
-                    {
-                        sendBuff[i / 2] = byte.Parse("" + temp[i] + temp[i + 1], System.Globalization.NumberStyles.HexNumber);
-                    }
-                    NetworkStream st = tcp.GetStream();
-                    st.Write(sendBuff, 0, sendBuff.Length);
-                    st.Flush();
-                    Dispatcher.Invoke(DispatcherPriority.Normal, new Action(delegate
-                    {
-                        PacketView.AppendText("[송신] " + temp + '\n');
-                    }));
-                    byte[] recBuff = new byte[packet.Length];
-                    st.Read(recBuff, 0, recBuff.Length);
-                    string msg = "";
-                    for (int i = 0; i < recBuff.Length; i++)
-                    {
-                        msg += recBuff[i].ToString("X").PadLeft(2, '0') + " ";
-                    }
-                    msg += '\n';
-                    Dispatcher.Invoke(DispatcherPriority.Normal, new Action(delegate
-                    {
-                        PacketView.AppendText("[수신] " + msg);
-                        PacketView.ScrollToEnd();
-                        DataView.ItemsSource = recList;
-                    }));
-                    tID++;
-                    packet = bakPacket;
-                    Thread.Sleep(sr);
                 }
-                else
+                string temp = tID.ToString("X").PadLeft(4, '0') + "0000" + packet;
+                byte[] sendBuff = new byte[temp.Length / 2];
+                for (int i = 0; i < temp.Length; i += 2)
                 {
-                    if (recList != null)
-                        recList.Clear();
-                    recList = new List<Data>();
-                    string temp = tID.ToString("X").PadLeft(4, '0') + "0000" + packet;
-                    byte[] sendBuff = new byte[temp.Length / 2];
-                    for (int i = 0; i < temp.Length; i += 2)
-                    {
-                        sendBuff[i / 2] = byte.Parse("" + temp[i] + temp[i + 1], System.Globalization.NumberStyles.HexNumber);
-                    }
-                    NetworkStream st = tcp.GetStream();
-                    st.Write(sendBuff, 0, sendBuff.Length);
-                    st.Flush();
-                    Dispatcher.Invoke(DispatcherPriority.Normal, new Action(delegate
-                    {
-                        PacketView.AppendText("[송신] " + temp + '\n');
-                    }));
-                    byte[] recBuff = new byte[modLen];
-                    st.Read(recBuff, 0, recBuff.Length);
-                    string msg = "";
-                    for (int i = 0; i < recBuff.Length; i++)
-                    {
-                        msg += recBuff[i].ToString("X").PadLeft(2, '0') + " ";
-                    }
-                    string bToS;
-                    int idx = 0;
-                    for (int i = 9; i + 2 <= recBuff.Length; i += 2)
-                    {
-                        bToS = "";
-                        bToS += recBuff[i].ToString("X") + recBuff[i + 1].ToString("X");
-                        recList.Add(new Data { Address = addr + idx++, Value = int.Parse(bToS, System.Globalization.NumberStyles.HexNumber) });
-                    }
-
-                    msg += '\n';
-                    Dispatcher.Invoke(DispatcherPriority.Normal, new Action(delegate
-                    {
-                        PacketView.AppendText("[수신] " + msg);
-                        PacketView.ScrollToEnd();
-                        DataView.ItemsSource = recList;
-                    }));
-                    tID++;
-                    Thread.Sleep(sr);
+                    sendBuff[i / 2] = byte.Parse("" + temp[i] + temp[i + 1], System.Globalization.NumberStyles.HexNumber);
                 }
+                NetworkStream st = tcp.GetStream();
+                st.Write(sendBuff, 0, sendBuff.Length);
+                st.Flush();
+                Dispatcher.Invoke(DispatcherPriority.Normal, new Action(delegate
+                {
+                    PacketView.AppendText("[송신] " + temp + '\n');
+                }));
+                byte[] recBuff = new byte[modLen];
+                st.Read(recBuff, 0, recBuff.Length);
+                string msg = "";
+                for (int i = 0; i < recBuff.Length; i++)
+                {
+                    msg += recBuff[i].ToString("X").PadLeft(2, '0') + " ";
+                }
+                string bToS;
+                int idx = 0;
+                for (int i = 9; i + 2 <= recBuff.Length; i += 2)
+                {
+                    bToS = "";
+                    bToS += recBuff[i].ToString("X") + recBuff[i + 1].ToString("X");
+                    recList[idx++].Value = int.Parse(bToS, System.Globalization.NumberStyles.HexNumber);
+                }
+                msg += '\n';
+                Dispatcher.Invoke(DispatcherPriority.Normal, new Action(delegate
+                {
+                    PacketView.AppendText("[수신] " + msg);
+                    PacketView.ScrollToEnd();
+                    DataView.Items.Refresh();
+                }));
+                tID++;
+                if (isWrite)
+                {
+                    packet = bakPacket;
+                    isWrite = false;
+                }
+                Thread.Sleep(sr);
+
             }
         }
 
@@ -163,7 +137,7 @@ namespace WpfApp1
         private void DataView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var item = ((FrameworkElement)e.OriginalSource).DataContext as Track;
-            Data d = (Data) DataView.SelectedItem;
+            Data d = (Data)DataView.SelectedItem;
             new Window3(this, d.Address.ToString()).Show();
         }
     }

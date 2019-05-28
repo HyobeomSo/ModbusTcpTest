@@ -20,7 +20,7 @@
         <Label Content="Function&#xA;" HorizontalAlignment="Left" Margin="56,67,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="67" Height="23"/>
         <Label Content="Address&#xD;&#xA;&#xA;" HorizontalAlignment="Left" Margin="59,95,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="53" Height="23"/>
         <Label Content="Quantity" HorizontalAlignment="Left" Margin="55,123,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="57" Height="34"/>
-        <TextBox Name="ScanRate" HorizontalAlignment="Left" Height="23" Margin="127,151,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="60"/>
+        <TextBox Name="ScanRate" HorizontalAlignment="Left" Height="23" Margin="127,151,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="60"/>
         <Label Content="Scan Rate&#xA;" HorizontalAlignment="Left" Margin="48,151,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="67" Height="23"/>
         <Label Content="ms&#xA;" HorizontalAlignment="Left" Margin="187,152,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.113,0.874" Width="53" Height="23"/>
         <Button Content="OK" HorizontalAlignment="Left" Margin="127,196,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}" Click="OK_Click"/>

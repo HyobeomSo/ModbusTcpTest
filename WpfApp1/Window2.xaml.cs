@@ -28,15 +28,17 @@ namespace WpfApp1
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
+            int qua = Convert.ToInt32(Quantity.Text);
             String packet = "";
             Convert.ToInt32(Addr.Text);
             packet += "0006" + Convert.ToInt32(SlaveID.Text).ToString("X").PadLeft(2, '0') +
                 (Function.SelectedIndex + 1).ToString("X").PadLeft(2, '0') + 
                 Convert.ToInt32(Addr.Text).ToString("X").PadLeft(4, '0') +
-                Convert.ToInt32(Quantity.Text).ToString("X").PadLeft(4, '0');
+                qua.ToString("X").PadLeft(4, '0');
             mw.packet = packet;
-            mw.modLen = 2 * Convert.ToInt32(Quantity.Text) + 9;
+            mw.modLen = 2 * qua + 9;
             mw.addr = Convert.ToInt32(Addr.Text);
+            mw.q = qua;
             mw.SendThread();
             mw.sr = Convert.ToInt32(ScanRate.Text);
             this.Close();
